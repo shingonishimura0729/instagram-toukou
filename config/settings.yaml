@@ -1,0 +1,14 @@
+instagram:
+  user_id_env: "INSTAGRAM_USER_ID"
+  access_token_env: "INSTAGRAM_ACCESS_TOKEN"
+
+defaults:
+  output_size: [1080, 1080]
+  font: "NotoSansJP-Bold.ttf"
+  font_size: 56
+  font_color: "#FFFFFF"
+  background: "default-bg.png"
+
+hashtags:
+  - "#instagram"
+  - "#automation"

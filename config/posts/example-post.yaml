@@ -1,0 +1,20 @@
+template:
+  background: "default-bg.png"
+  text_lines:
+    - text: "今日の一言"
+      font: "NotoSansJP-Bold.ttf"
+      size: 72
+      color: "#FFFFFF"
+      position: [540, 400]
+    - text: "前に進み続けよう"
+      font: "NotoSansJP-Bold.ttf"
+      size: 48
+      color: "#CCCCCC"
+      position: [540, 520]
+  output_size: [1080, 1080]
+
+caption: |
+  今日のモチベーション ✨
+  #motivation #daily
+
+hashtags_append: true
