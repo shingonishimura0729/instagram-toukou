@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #2D5A27;
+  --color-primary-light: #4A8C3F;
+  --color-primary-lighter: #6DB362;
+  --color-secondary: #8B6914;
+  --color-secondary-light: #B8942A;
+  --color-accent: #3B82B6;
+  --color-accent-light: #5BA3D9;
+  --color-bg: #FDFBF7;
+  --color-bg-card: #FFFFFF;
+  --color-text: #2D2D2D;
+  --color-text-sub: #6B6B6B;
+  --color-border: #E5E0D5;
+  --font-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
