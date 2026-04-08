@@ -23,13 +23,23 @@ export default function Footer() {
             <h3 className="font-bold mb-3 text-sm">サービス</h3>
             <ul className="space-y-2 text-sm text-white/70">
               <li>
+                <Link href="/story" className="hover:text-white transition-colors">
+                  ブランドストーリー
+                </Link>
+              </li>
+              <li>
                 <Link href="/simulator" className="hover:text-white transition-colors">
                   予算シミュレーター
                 </Link>
               </li>
               <li>
                 <Link href="/anchor" className="hover:text-white transition-colors">
-                  AIアンカー相談
+                  専属アンカー相談
+                </Link>
+              </li>
+              <li>
+                <Link href="/partner" className="hover:text-white transition-colors">
+                  パートナー募集
                 </Link>
               </li>
               <li>

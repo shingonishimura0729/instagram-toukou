@@ -5,8 +5,10 @@ import { useState } from "react";
 
 const navItems = [
   { href: "/", label: "ホーム" },
+  { href: "/story", label: "ブランドストーリー" },
   { href: "/simulator", label: "予算シミュレーター" },
-  { href: "/anchor", label: "AIアンカー" },
+  { href: "/anchor", label: "専属アンカー" },
+  { href: "/partner", label: "パートナー募集" },
   { href: "/contact", label: "お問い合わせ" },
 ];
 

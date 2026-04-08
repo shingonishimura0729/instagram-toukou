@@ -1,6 +1,8 @@
 import HeroSection from "@/components/HeroSection";
 import ConceptSection from "@/components/ConceptSection";
 import ProcessFlow from "@/components/ProcessFlow";
+import BrandSection from "@/components/BrandSection";
+import PartnerCTA from "@/components/PartnerCTA";
 import Link from "next/link";
 
 export default function Home() {
@@ -8,7 +10,9 @@ export default function Home() {
     <>
       <HeroSection />
       <ConceptSection />
+      <BrandSection />
       <ProcessFlow />
+      <PartnerCTA />
 
       {/* CTA Section */}
       <section className="py-20 md:py-28 bg-primary">
