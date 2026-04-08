@@ -1,0 +1,80 @@
+name: "Instagram 投稿企画"
+description: "投稿内容のブレインストーミングと企画を行います"
+title: "[投稿企画] "
+labels: ["draft"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Instagram 投稿企画シート
+        投稿の内容を壁打ちしながら決めていきましょう。
+        最終的に内容が確定したら `approved` ラベルを追加すると自動投稿されます。
+
+  - type: textarea
+    id: concept
+    attributes:
+      label: 投稿コンセプト
+      description: この投稿で伝えたいこと・テーマ
+      placeholder: |
+        例: 今日のモチベーション名言を共有したい
+    validations:
+      required: true
+
+  - type: textarea
+    id: cover_text
+    attributes:
+      label: 表紙テキスト（画像上のテキスト）
+      description: 画像に載せるテキスト。複数行の場合は改行で区切ってください。
+      placeholder: |
+        メインテキスト: 今日の一言
+        サブテキスト: 前に進み続けよう
+    validations:
+      required: true
+
+  - type: dropdown
+    id: background_style
+    attributes:
+      label: 背景スタイル
+      description: 画像の背景を選択
+      options:
+        - グラデーション（デフォルト）
+        - カスタム背景画像
+    validations:
+      required: true
+
+  - type: input
+    id: background_image
+    attributes:
+      label: 背景画像ファイル名
+      description: カスタム背景を使う場合、templates/backgrounds/ 内のファイル名
+      placeholder: "default-bg.png"
+
+  - type: textarea
+    id: text_style
+    attributes:
+      label: テキストスタイル
+      description: フォントサイズ・色・位置などの指定（任意）
+      placeholder: |
+        メインテキスト: サイズ72, 白色, 中央上部
+        サブテキスト: サイズ48, 薄灰色, 中央下部
+
+  - type: textarea
+    id: caption
+    attributes:
+      label: キャプション（投稿文）
+      description: Instagram の投稿文。ハッシュタグも含めてください。
+      placeholder: |
+        今日のモチベーション ✨
+
+        #motivation #daily #名言
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: メモ・備考
+      description: その他の要望や参考情報
+      placeholder: |
+        - ロゴを右下に入れたい
+        - 投稿時間は夕方がいい
