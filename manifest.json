@@ -1,0 +1,25 @@
+{
+  "name": "カーポート建築確認申請チェックリスト",
+  "short_name": "CP申請チェック",
+  "description": "カーポート建築確認申請に必要な書類・手続きのチェックリスト",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1a73e8",
+  "background_color": "#f5f5f5",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

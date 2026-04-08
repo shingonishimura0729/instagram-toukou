@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1a73e8">
+  <meta name="description" content="カーポート建築確認申請に必要な書類・手続きのチェックリスト">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CP申請チェック">
+  <title>カーポート建築確認申請チェックリスト</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>カーポート建築確認申請チェックリスト</h1>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <p class="progress-text">進捗: 0/0 完了</p>
+  </header>
+
+  <main id="checklist-container">
+    <noscript>
+      <p style="padding: 24px; text-align: center;">このアプリを使用するにはJavaScriptを有効にしてください。</p>
+    </noscript>
+  </main>
+
+  <footer>
+    <span class="last-updated" id="last-updated"></span>
+    <button class="btn-reset" id="reset-btn">リセット</button>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
