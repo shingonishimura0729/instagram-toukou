@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="80" fill="#1a73e8"/>
+  <g fill="white">
+    <!-- Roof -->
+    <rect x="76" y="112" width="360" height="96" rx="10"/>
+    <!-- Left pillar -->
+    <rect x="112" y="208" width="32" height="160"/>
+    <!-- Right pillar -->
+    <rect x="368" y="208" width="32" height="160"/>
+    <!-- Check mark -->
+    <path d="M186 320 L234 368 L326 276" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
