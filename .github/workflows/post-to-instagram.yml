@@ -1,0 +1,113 @@
+name: Post to Instagram
+
+on:
+  workflow_dispatch:
+    inputs:
+      post_file:
+        description: "投稿設定ファイル名 (例: example-post.yaml)"
+        required: true
+        type: string
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  post:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issues' && github.event.label.name == 'approved')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Detect post file
+        id: detect
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "post_file=config/posts/${{ github.event.inputs.post_file }}" >> "$GITHUB_OUTPUT"
+            echo "issue_triggered=false" >> "$GITHUB_OUTPUT"
+          else
+            ISSUE_NUMBER="${{ github.event.issue.number }}"
+            POST_FILE="config/posts/issue-${ISSUE_NUMBER}.yaml"
+            if [ ! -f "$POST_FILE" ]; then
+              echo "投稿設定ファイルが見つかりません: $POST_FILE"
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "post_file=${POST_FILE}" >> "$GITHUB_OUTPUT"
+            echo "issue_triggered=true" >> "$GITHUB_OUTPUT"
+            echo "issue_number=${ISSUE_NUMBER}" >> "$GITHUB_OUTPUT"
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Ensure image exists
+        if: steps.detect.outputs.skip != 'true'
+        run: |
+          POST_FILE="${{ steps.detect.outputs.post_file }}"
+          SLUG=$(basename "$POST_FILE" .yaml)
+          if [ ! -f "output/${SLUG}.png" ]; then
+            echo "画像が存在しないため生成します"
+            python -m src.main generate "$POST_FILE"
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add output/
+            git commit -m "生成画像を追加: ${POST_FILE}" || echo "変更なし"
+            git push
+          fi
+
+      - name: Wait for raw URL availability
+        if: steps.detect.outputs.skip != 'true'
+        run: sleep 15
+
+      - name: Determine image URL
+        if: steps.detect.outputs.skip != 'true'
+        id: image_url
+        run: |
+          POST_FILE="${{ steps.detect.outputs.post_file }}"
+          SLUG=$(basename "$POST_FILE" .yaml)
+          IMAGE_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/output/${SLUG}.png"
+          echo "url=${IMAGE_URL}" >> "$GITHUB_OUTPUT"
+
+      - name: Post to Instagram
+        if: steps.detect.outputs.skip != 'true'
+        env:
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        run: |
+          python -m src.main publish "${{ steps.detect.outputs.post_file }}" \
+            --image-url "${{ steps.image_url.outputs.url }}"
+
+      - name: Comment result on issue
+        if: steps.detect.outputs.skip != 'true' && steps.detect.outputs.issue_triggered == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = ${{ steps.detect.outputs.issue_number }};
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: '🎉 **Instagram に投稿完了しました！**\n\nこの Issue を閉じます。',
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              state: 'closed',
+              labels: ['approved', 'posted'],
+            });

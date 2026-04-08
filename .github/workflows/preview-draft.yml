@@ -1,0 +1,103 @@
+name: Generate Draft Preview
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  preview:
+    if: contains(github.event.issue.labels.*.name, 'draft')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Parse issue and generate config
+        id: parse
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python -c "
+          import os, json, yaml
+          from src.issue_parser import parse_issue_body, build_post_config_from_issue
+
+          body = os.environ['ISSUE_BODY']
+          issue_number = os.environ['ISSUE_NUMBER']
+
+          sections = parse_issue_body(body)
+          config = build_post_config_from_issue(sections)
+          config['_slug'] = f'issue-{issue_number}'
+
+          config_path = f'config/posts/issue-{issue_number}.yaml'
+          os.makedirs(os.path.dirname(config_path), exist_ok=True)
+          with open(config_path, 'w', encoding='utf-8') as f:
+              yaml.dump(config, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+
+          print(f'Config saved to {config_path}')
+          "
+
+      - name: Generate preview image
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python -m src.main generate "config/posts/issue-${ISSUE_NUMBER}.yaml"
+
+      - name: Commit preview image
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/ config/posts/
+          git commit -m "プレビュー画像を生成: Issue #${ISSUE_NUMBER}" || echo "変更なし"
+          git push
+
+      - name: Comment preview on issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.issue.number;
+            const slug = `issue-${issueNumber}`;
+            const imageUrl = `https://raw.githubusercontent.com/${context.repo.owner}/${context.repo.repo}/main/output/${slug}.png`;
+
+            const body = `## プレビュー画像\n\n![\u30d7\u30ec\u30d3\u30e5\u30fc](${imageUrl}?t=${Date.now()})\n\n---\n**内容を確認してください：**\n- 画像のテキスト・デザインは意図通りですか？\n- キャプションの内容は問題ありませんか？\n\n✅ 問題なければ \`approved\` ラベルを追加すると自動投稿されます。\n✏️ 修正が必要な場合は Issue を編集してください（自動的にプレビューが再生成されます）。`;
+
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+            });
+
+            const botComment = comments.data.find(
+              c => c.user.type === 'Bot' && c.body.includes('プレビュー画像')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: body,
+              });
+            }
