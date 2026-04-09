@@ -12,6 +12,8 @@ export default function Home() {
       <ConceptSection />
       <BrandSection />
       <ProcessFlow />
+
+      {/* Partner CTA — secondary prominence */}
       <PartnerCTA />
 
       {/* CTA Section */}

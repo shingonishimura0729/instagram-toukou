@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import Link from "next/link";
 import BudgetChart from "./BudgetChart";
 
@@ -64,6 +64,8 @@ function formatMoney(value: number) {
 
 export default function BudgetSimulator() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [email, setEmail] = useState("");
+  const [saved, setSaved] = useState(false);
 
   const remaining = state.totalBudget - state.gardenBudget;
   const landBudget = Math.round(remaining * (state.landRatio / 100));
@@ -344,24 +346,63 @@ export default function BudgetSimulator() {
               </div>
             </div>
 
-            {/* Next actions */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/anchor"
-                className="flex-1 inline-flex items-center justify-center bg-primary text-white font-bold px-6 py-3 rounded-xl hover:bg-primary-light transition-colors"
-              >
-                AIアンカーに相談する
-              </Link>
+            {/* Lead Capture CTA */}
+            <div className="mt-8 bg-primary/5 rounded-2xl p-6 border border-primary/20">
+              {saved ? (
+                <div className="text-center py-4">
+                  <div className="text-2xl mb-2">✅</div>
+                  <p className="text-text font-bold mb-1">プランを保存しました</p>
+                  <p className="text-sm text-text-sub">
+                    アドバイザーから2営業日以内にご連絡いたします
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <h3 className="text-lg font-bold text-text mb-2">
+                    この予算プランを保存して相談する
+                  </h3>
+                  <p className="text-sm text-text-sub mb-4">
+                    メールアドレスをご入力いただくと、予算プランを保存できます。アドバイザーがプランを確認し、ご連絡いたします。
+                  </p>
+                  <div className="flex gap-3">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="example@email.com"
+                      className="flex-1 bg-white border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                    />
+                    <button
+                      onClick={() => {
+                        if (email.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                          setSaved(true);
+                        }
+                      }}
+                      className="bg-primary text-white font-bold px-6 py-3 rounded-xl hover:bg-primary-light transition-colors whitespace-nowrap"
+                    >
+                      保存して相談
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Secondary actions */}
+            <div className="mt-4 flex flex-col sm:flex-row gap-3">
               <Link
                 href="/contact"
                 className="flex-1 inline-flex items-center justify-center border-2 border-primary text-primary font-bold px-6 py-3 rounded-xl hover:bg-primary/5 transition-colors"
               >
-                無料相談を予約する
+                お問い合わせフォームへ
               </Link>
             </div>
 
             <button
-              onClick={() => dispatch({ type: "RESET" })}
+              onClick={() => {
+                dispatch({ type: "RESET" });
+                setEmail("");
+                setSaved(false);
+              }}
               className="mt-4 w-full text-sm text-text-sub hover:text-text transition-colors py-2"
             >
               最初からやり直す

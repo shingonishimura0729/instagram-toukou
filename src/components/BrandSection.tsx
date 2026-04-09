@@ -11,19 +11,19 @@ export default function BrandSection() {
               <span>Our Philosophy</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight mb-6">
-              庭は「残り」じゃない。
+              「庭は残り予算で」
               <br />
-              <span className="text-primary">暮らしの起点</span>だ。
+              <span className="text-primary">本当にそれでいい？</span>
             </h2>
             <p className="text-text-sub text-lg leading-relaxed mb-6">
-              家づくりの常識は「建物が先、庭は残り予算で」。
-              でも暮らしを本当に豊かにするのは、毎朝窓から見える緑や、
-              家族が集う庭の時間ではないでしょうか。
+              家を建てた多くの人が、庭に後悔しています。
+              建物に予算を使い切り、理想の庭を諦めてしまう。
+              でも毎日の暮らしを豊かにするのは、窓の向こうの緑ではないでしょうか。
             </p>
             <p className="text-text-sub text-lg leading-relaxed mb-8">
-              私たちは庭の予算を最初に決め、AI＋人間の専属アンカーが
-              土地探しから建物設計まで一貫して伴走する、
-              新しい家づくりのカタチを提案します。
+              私たちは「庭の予算を最初に決める」という
+              新しい家づくりのカタチを模索しています。
+              2026年始動のプロジェクトです。
             </p>
             <Link
               href="/story"
@@ -52,35 +52,29 @@ export default function BrandSection() {
               {/* Illustration with text blocks */}
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-xl flex-shrink-0">
+                    😔
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-text mb-1">今の家づくり</h3>
+                    <p className="text-sm text-text-sub">
+                      建物 → 土地 → 残りで庭。理想の庭が実現しにくい
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center py-2">
+                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </div>
+                <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-xl flex-shrink-0">
-                    ⚓
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-text mb-1">専属アンカー</h3>
-                    <p className="text-sm text-text-sub">
-                      AI＋人間のハイブリッドで、最初から最後まで一人の担当が伴走
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-xl flex-shrink-0">
-                    🏠
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-text mb-1">BtoB × BtoC</h3>
-                    <p className="text-sm text-text-sub">
-                      工務店・不動産会社にツール提供しつつ、エンドユーザーにも直接届ける
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-xl flex-shrink-0">
                     🌿
                   </div>
                   <div>
-                    <h3 className="font-bold text-text mb-1">庭ファースト</h3>
+                    <h3 className="font-bold text-text mb-1">庭ファーストの家づくり</h3>
                     <p className="text-sm text-text-sub">
-                      庭の予算を起点に逆算。暮らしの豊かさを最優先にした設計思想
+                      庭 → 土地 → 建物。暮らしの豊かさから逆算する新しいカタチ
                     </p>
                   </div>
                 </div>

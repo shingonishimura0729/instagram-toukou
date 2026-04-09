@@ -27,7 +27,7 @@ export default function HeroSection() {
           <p className="text-lg md:text-xl text-text-sub leading-relaxed mb-8 max-w-lg">
             お庭の予算を最初に決める、新しい家づくりのカタチ。
             <br className="hidden md:block" />
-            AIアンカーが土地探しから庭づくりまで、あなたの理想の住まいづくりを一貫してサポートします。
+            専属アドバイザーが土地探しから庭づくりまで、あなたの理想の住まいづくりを一貫してサポートします。
           </p>
 
           {/* CTAs */}
@@ -55,24 +55,28 @@ export default function HeroSection() {
               href="/anchor"
               className="inline-flex items-center justify-center border-2 border-primary text-primary font-bold px-8 py-4 rounded-xl hover:bg-primary/5 transition-colors text-lg"
             >
-              AIアンカーに相談
+              アドバイザーに相談
             </Link>
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="mt-16 grid grid-cols-3 gap-6 max-w-lg">
-          <div>
-            <div className="text-3xl md:text-4xl font-bold text-primary">98%</div>
-            <div className="text-sm text-text-sub mt-1">お客様満足度</div>
-          </div>
-          <div>
-            <div className="text-3xl md:text-4xl font-bold text-primary">500+</div>
-            <div className="text-sm text-text-sub mt-1">実績件数</div>
-          </div>
-          <div>
-            <div className="text-3xl md:text-4xl font-bold text-primary">24h</div>
-            <div className="text-sm text-text-sub mt-1">AI対応</div>
+        {/* Project Status — honest startup messaging */}
+        <div className="mt-16 max-w-lg">
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl border border-border p-6">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
+              <span className="text-sm font-bold text-text">2026年始動プロジェクト</span>
+            </div>
+            <p className="text-sm text-text-sub leading-relaxed">
+              「庭から作る家づくり」を本気で実現するために、
+              造園家・工務店・住宅購入検討者の皆さまと一緒に仕組みを作っています。
+            </p>
+            <Link
+              href="/story"
+              className="inline-flex items-center text-sm text-primary font-medium mt-3 hover:text-primary-light transition-colors"
+            >
+              私たちの想いを読む →
+            </Link>
           </div>
         </div>
       </div>

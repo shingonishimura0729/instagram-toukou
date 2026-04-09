@@ -17,9 +17,9 @@ const values = [
   },
   {
     number: "02",
-    title: "一人ひとりに、専属アンカーを",
+    title: "一人ひとりに、専属アドバイザーを",
     description:
-      "家づくりは人生で最大の買い物の一つ。だからこそ、AIと人間のハイブリッドで、あなた専属のアドバイザー「アンカー」が最初から最後まで伴走します。いつでも相談でき、何度でも寄り添う。それが私たちのエージェントスタイルです。",
+      "家づくりは人生で最大の買い物の一つ。だからこそ、あなた専属のアドバイザー「アンカー」が最初から最後まで伴走します。いつでも相談でき、何度でも寄り添う。それが私たちのスタイルです。",
     icon: "⚓",
   },
   {
@@ -31,30 +31,18 @@ const values = [
   },
 ];
 
-const timeline = [
+const questions = [
   {
-    year: "原体験",
-    title: "「庭が後回し」という違和感",
-    description:
-      "創業者自身の家づくりで、理想の庭が予算不足で実現できなかった経験。多くの施主が同じ悩みを抱えていることを知り、業界構造に課題を感じました。",
+    question: "家を建てた後、庭にかけるお金が足りなかった",
+    description: "多くの方が経験する「庭は残り予算で」の現実。建物に予算を使い切り、理想の庭を諦めた方はいませんか？",
   },
   {
-    year: "着想",
-    title: "庭ファーストの予算設計",
-    description:
-      "「庭の予算を最初に決めたら、すべてが変わるのでは？」という逆転の発想。造園家と建築士が一緒にプランニングする仕組みを構想しました。",
+    question: "庭のことを相談できる相手が、家づくりの初期段階にいなかった",
+    description: "工務店は建物のプロ。不動産会社は土地のプロ。でも庭のプロが最初からいたら、家づくりは変わるのではないでしょうか。",
   },
   {
-    year: "創業",
-    title: "AIアンカーの開発",
-    description:
-      "テクノロジーの力で、一人ひとりに最適な予算配分と土地提案を実現。AI＋人間の専属アドバイザー「アンカー」が誕生しました。",
-  },
-  {
-    year: "現在",
-    title: "全国のパートナーと共に",
-    description:
-      "工務店・不動産会社・造園家とパートナーシップを結び、「庭から作る家」を全国へ。お客様と業界、双方にとって価値ある新しいカタチを広げています。",
+    question: "完成した庭に、もう少しこだわりたかった",
+    description: "予算も敷地も決まった後の庭づくりには限界があります。最初から庭を考えていたら、どんな暮らしが実現できたでしょうか。",
   },
 ];
 
@@ -152,39 +140,47 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* Questions — demand validation */}
       <section className="py-20 md:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
-              <span className="text-primary">ストーリー</span>
+              あなたも<span className="text-primary">庭で後悔</span>しましたか？
             </h2>
             <p className="text-text-sub text-lg">
-              「庭から作れる不動産」が生まれるまで
+              もしひとつでも心当たりがあれば、私たちに話を聞かせてください
             </p>
           </div>
 
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-primary/20" />
+          <div className="space-y-6">
+            {questions.map((item, i) => (
+              <div
+                key={i}
+                className="bg-bg rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow"
+              >
+                <h3 className="text-lg font-bold text-text mb-3 flex items-start gap-3">
+                  <span className="text-primary text-xl flex-shrink-0">?</span>
+                  「{item.question}」
+                </h3>
+                <p className="text-text-sub leading-relaxed pl-8">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
 
-            <div className="space-y-10">
-              {timeline.map((item, i) => (
-                <div key={i} className="relative pl-16 md:pl-20">
-                  {/* Dot */}
-                  <div className="absolute left-4 md:left-6 top-1 w-4 h-4 rounded-full bg-primary border-4 border-white shadow" />
-                  <div className="text-sm font-bold text-primary mb-1">
-                    {item.year}
-                  </div>
-                  <h3 className="text-lg font-bold text-text mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-text-sub leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <div className="text-center mt-10">
+            <p className="text-text-sub mb-4">
+              こうした声が本当にあるのか、私たちはまだ確信を持てていません。
+              <br />
+              だからこそ、あなたのリアルな体験を聞かせてほしいのです。
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center bg-primary text-white font-bold px-8 py-4 rounded-xl hover:bg-primary-light transition-colors text-lg"
+            >
+              あなたの体験を聞かせてください
+            </Link>
           </div>
         </div>
       </section>
@@ -193,12 +189,12 @@ export default function StoryPage() {
       <section className="py-20 md:py-28 bg-primary">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            庭から始まる家づくりを、一緒に。
+            一緒に「庭から」を試してみませんか？
           </h2>
           <p className="text-white/80 text-lg mb-8">
-            エンドユーザーの方も、パートナー企業の方も、
+            家づくりを検討中の方は予算シミュレーションを、
             <br className="hidden md:block" />
-            まずはお気軽にお声がけください。
+            住宅業界の方はパートナー情報をご覧ください。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -211,7 +207,7 @@ export default function StoryPage() {
               href="/partner"
               className="inline-flex items-center justify-center border-2 border-white text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-colors text-lg"
             >
-              パートナー募集を見る
+              プロの方へ
             </Link>
           </div>
         </div>

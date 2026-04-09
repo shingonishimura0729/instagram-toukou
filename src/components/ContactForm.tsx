@@ -6,10 +6,19 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
+  userType: string;
   date: string;
   budgetRange: string;
   gardenWishes: string;
 }
+
+const userTypeOptions = [
+  "家を建てたい個人",
+  "工務店・ハウスメーカー",
+  "不動産会社",
+  "造園家・ランドスケープデザイナー",
+  "その他",
+];
 
 const budgetOptions = [
   "2,000万円以下",
@@ -26,6 +35,7 @@ export default function ContactForm() {
     name: "",
     email: "",
     phone: "",
+    userType: "",
     date: "",
     budgetRange: "",
     gardenWishes: "",
@@ -81,6 +91,7 @@ export default function ContactForm() {
               name: "",
               email: "",
               phone: "",
+              userType: "",
               date: "",
               budgetRange: "",
               gardenWishes: "",
@@ -151,6 +162,25 @@ export default function ContactForm() {
         {errors.phone && (
           <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
         )}
+      </div>
+
+      {/* User Type */}
+      <div>
+        <label className="block text-sm font-medium text-text mb-1.5">
+          あなたについて
+        </label>
+        <select
+          value={form.userType}
+          onChange={(e) => updateField("userType", e.target.value)}
+          className="w-full bg-white border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+        >
+          <option value="">選択してください</option>
+          {userTypeOptions.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Preferred Date */}

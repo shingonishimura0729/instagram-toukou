@@ -51,7 +51,7 @@ export default function AnchorChat() {
       id: 0,
       role: "anchor",
       content:
-        "はじめまして。「庭から作れる不動産」の専属アンカーです。\n\nAIと人間のチームで、庭の予算を起点にした家づくりを最初から最後までサポートします。\n\nまず、お名前をお聞かせいただけますか？（ニックネームでも構いません）",
+        "はじめまして。「庭から作れる不動産」の専属アドバイザーです。\n\n庭の予算を起点にした家づくりを、最初から最後までサポートします。\n\n※ 現在はサービス準備中のため、自動応答でのご案内となります。詳しいご相談はお問い合わせフォームからどうぞ。\n\nまず、お名前をお聞かせいただけますか？（ニックネームでも構いません）",
     },
   ]);
   const [input, setInput] = useState("");
@@ -147,7 +147,7 @@ export default function AnchorChat() {
           </div>
           <div className="text-xs text-text-sub flex items-center gap-1">
             <span className="w-2 h-2 bg-green-500 rounded-full inline-block" />
-            オンライン — AI＋人間チームで対応中
+            オンライン — 自動応答で対応中（準備中）
           </div>
         </div>
       </div>

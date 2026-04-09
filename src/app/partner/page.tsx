@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "パートナー募集 | 庭から作れる不動産会社",
   description:
-    "工務店・不動産会社・造園家の皆様へ。「庭から始まる家づくり」で差別化しませんか。AIアンカーと予算シミュレーターで、御社の集客と成約率を高めます。",
+    "工務店・不動産会社・造園家の皆様へ。「庭から始まる家づくり」という新しい取り組みに興味をお持ちの方、まずは情報交換しませんか。",
 };
 
 const partnerTypes = [
@@ -12,60 +12,44 @@ const partnerTypes = [
     icon: "🏠",
     role: "工務店・ハウスメーカー",
     pain: "「庭の予算が取れない」と言われ、外構が後回しにされがち",
-    solution:
-      "庭の予算を最初に確保する独自フローで、お客様満足度と追加受注率が向上。庭込みのトータルプランを自然に提案できます。",
-    benefit: "客単価UP & 差別化",
+    idea:
+      "庭の予算を最初に確保するフローを一緒に試してみませんか。お客様に庭込みのトータルプランを提案する方法を模索中です。",
   },
   {
     icon: "🏢",
     role: "不動産会社",
     pain: "物件の差別化が難しく、価格競争に陥りやすい",
-    solution:
-      "「庭に最適な土地」という新しい切り口で物件を提案。AIアンカーが日当たり・地形・広さを分析し、庭視点の土地レコメンドを提供します。",
-    benefit: "新しい集客チャネル",
+    idea:
+      "「庭に最適な土地」という切り口に可能性を感じています。庭視点の土地紹介という新しいアプローチについて、意見交換させてください。",
   },
   {
     icon: "🌳",
     role: "造園家・ランドスケープデザイナー",
     pain: "家の完成後に呼ばれ、限られた予算と敷地で制約が多い",
-    solution:
-      "設計の最上流から参画。お客様の庭の理想像が予算と土地に反映されるので、本来の腕を存分に振るえます。",
-    benefit: "上流参画 & 適正予算",
+    idea:
+      "設計の最上流から造園家が参画できる仕組みを作りたいと考えています。現場のリアルなお声を聞かせてください。",
   },
 ];
 
-const features = [
+const whatWeHave = [
   {
     title: "予算シミュレーター",
     description:
-      "御社のWebサイトやLPに埋め込み可能。庭の予算を起点にした独自の体験で、お客様の関心を引きつけます。",
-    tag: "集客ツール",
+      "庭の予算を起点にした家づくり予算の体験ツール。現在テスト運用中です。",
+    tag: "開発中",
   },
   {
-    title: "AIアンカー",
+    title: "庭ファーストの考え方",
     description:
-      "24時間対応のAIアドバイザーがお客様の初期相談を受け付け。温度の高いリードを御社に送客します。",
-    tag: "リード獲得",
-  },
-  {
-    title: "ブランド共創",
-    description:
-      "「庭から作れる不動産」認定パートナーとしてブランドを共有。差別化された集客と信頼の証を御社の武器に。",
-    tag: "ブランド価値",
-  },
-  {
-    title: "専属サポート",
-    description:
-      "導入から運用まで、専属の担当者がサポート。御社の強みを活かした共同プランニングで、成果を最大化します。",
-    tag: "伴走支援",
+      "「庭の予算を最初に決める」という新しいアプローチ。消費者にどう届くか、一緒に検証したいと考えています。",
+    tag: "検証中",
   },
 ];
 
 const steps = [
   { step: "1", title: "お問い合わせ", description: "まずはお気軽にご連絡ください" },
-  { step: "2", title: "ヒアリング", description: "御社の課題と強みを伺います" },
-  { step: "3", title: "プラン提案", description: "最適な連携モデルをご提案" },
-  { step: "4", title: "パートナー契約", description: "合意の上で正式にスタート" },
+  { step: "2", title: "情報交換", description: "お互いの考えと課題を共有" },
+  { step: "3", title: "一緒に検証", description: "小さく試して手応えを確認" },
 ];
 
 export default function PartnerPage() {
@@ -88,15 +72,15 @@ export default function PartnerPage() {
           <p className="text-lg text-text-sub leading-relaxed max-w-2xl mx-auto mb-8">
             工務店・不動産会社・造園家の皆様へ。
             <br />
-            庭を起点にした新しい家づくりのバリューチェーンで、
+            2026年始動の新しい取り組みです。
             <br className="hidden md:block" />
-            お客様にも御社にも価値のある関係を創ります。
+            まずは情報交換から始めませんか。
           </p>
           <Link
             href="/contact"
             className="inline-flex items-center justify-center bg-primary text-white font-bold px-8 py-4 rounded-xl hover:bg-primary-light transition-colors text-lg shadow-lg shadow-primary/20"
           >
-            パートナー相談をする
+            まずは話してみる
             <svg
               className="w-5 h-5 ml-2"
               fill="none"
@@ -119,10 +103,10 @@ export default function PartnerPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
-              <span className="text-primary">業種別</span>のメリット
+              こんな<span className="text-primary">課題感</span>をお持ちの方へ
             </h2>
             <p className="text-text-sub text-lg">
-              それぞれの課題に合わせた連携モデルをご用意しています
+              私たちも手探りの段階です。一緒に考えてくれる方を探しています
             </p>
           </div>
 
@@ -137,44 +121,44 @@ export default function PartnerPage() {
                   {partner.role}
                 </h3>
                 <div className="bg-red-50 text-red-700 text-sm rounded-lg px-3 py-2 mb-4">
-                  <span className="font-medium">課題：</span>
+                  <span className="font-medium">よくある課題：</span>
                   {partner.pain}
                 </div>
-                <p className="text-text-sub text-sm leading-relaxed flex-1 mb-4">
-                  {partner.solution}
+                <p className="text-text-sub text-sm leading-relaxed flex-1">
+                  {partner.idea}
                 </p>
-                <div className="inline-flex self-start bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">
-                  {partner.benefit}
-                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Provided Tools & Services */}
+      {/* What We Have Now */}
       <section className="py-20 md:py-28 bg-bg">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
-              パートナーに<span className="text-primary">提供するもの</span>
+              今<span className="text-primary">私たちにあるもの</span>
             </h2>
+            <p className="text-text-sub text-lg">
+              まだ始まったばかりですが、一緒に育てていただける方を探しています
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {features.map((feature) => (
+            {whatWeHave.map((item) => (
               <div
-                key={feature.title}
+                key={item.title}
                 className="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow"
               >
                 <div className="inline-flex bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-4">
-                  {feature.tag}
+                  {item.tag}
                 </div>
                 <h3 className="text-xl font-bold text-text mb-3">
-                  {feature.title}
+                  {item.title}
                 </h3>
                 <p className="text-text-sub leading-relaxed">
-                  {feature.description}
+                  {item.description}
                 </p>
               </div>
             ))}
@@ -187,11 +171,11 @@ export default function PartnerPage() {
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
-              パートナーシップの<span className="text-primary">流れ</span>
+              はじめ方は<span className="text-primary">シンプル</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-3 gap-6">
             {steps.map((s, i) => (
               <div key={i} className="text-center">
                 <div className="w-14 h-14 rounded-full bg-primary text-white text-xl font-bold flex items-center justify-center mx-auto mb-4">
@@ -220,7 +204,7 @@ export default function PartnerPage() {
             href="/contact"
             className="inline-flex items-center justify-center bg-white text-primary font-bold px-8 py-4 rounded-xl hover:bg-white/90 transition-colors text-lg"
           >
-            パートナー相談フォームへ
+            情報交換のお問い合わせへ
           </Link>
         </div>
       </section>

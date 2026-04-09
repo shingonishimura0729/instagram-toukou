@@ -10,19 +10,18 @@ export default function PartnerCTA() {
               For Partners
             </div>
             <h3 className="text-2xl md:text-3xl font-bold text-text mb-3">
-              工務店・不動産会社の方へ
+              住宅業界のプロの方へ
             </h3>
             <p className="text-text-sub leading-relaxed">
-              「庭から作れる不動産」の予算シミュレーターやAIアンカーを
-              御社の集客ツールとして活用しませんか。
-              認定パートナーとしてブランドを共有し、差別化を実現します。
+              「庭から家づくりを始める」という新しい取り組みに興味はありませんか？
+              工務店・不動産会社・造園家の方と一緒に、この仕組みを作りたいと考えています。
             </p>
           </div>
           <Link
             href="/partner"
             className="inline-flex items-center justify-center bg-primary text-white font-bold px-8 py-4 rounded-xl hover:bg-primary-light transition-colors whitespace-nowrap shadow-lg shadow-primary/20"
           >
-            パートナー詳細を見る
+            詳しく見る
             <svg
               className="w-5 h-5 ml-2"
               fill="none"
